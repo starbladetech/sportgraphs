@@ -67,7 +67,7 @@ function FormateoTime(milisegundos){
 		return horas+'h:'+minutos+'m:'+segundos+'s';
 }
 
-function GraficaPuntos(recorrido, SumTime, salto){
+function GraficaPuntos(recorrido, SumTime, salto, data){
 
 	var last_element = recorrido[recorrido.length - 1];
 	var elfor = Math.floor(last_element);
@@ -109,10 +109,10 @@ function GraficaPuntos(recorrido, SumTime, salto){
 	for(var cursor=0; cursor < saltosRec.length; cursor++)
 	{
 		datalin[cursor][0] = saltosRec[cursor];
-		datalin[cursor][1] = saltosTim[cursor]*1000+Date.UTC(2013,12,14,17,18,47);
+		datalin[cursor][1] = saltosTim[cursor]*1000+Date.UTC(data[0],data[1],data[2],data[3],data[4],data[5]);
 		
 		datalinIdeal[cursor][0] = saltosRec[cursor];
-		datalinIdeal[cursor][1] = saltosTimIdeal[cursor]*1000+Date.UTC(2013,12,14,17,18,47);
+		datalinIdeal[cursor][1] = saltosTimIdeal[cursor]*1000+Date.UTC(data[0],data[1],data[2],data[3],data[4],data[5]);
 	}
 	/* --- ------------------------------------ --- */
 	$('#container').highcharts({
@@ -154,7 +154,7 @@ function GraficaPuntos(recorrido, SumTime, salto){
             formatter: function() {
 			
                 return 'El tiempo para <b>'+ this.x +
-                    ' km</b> es <b>'+ FormateoTime(this.y-Date.UTC(2013,12,14,17,18,47)) +'</b>';
+                    ' km</b> es <b>'+ FormateoTime(this.y-Date.UTC(data[0],data[1],data[2],data[3],data[4],data[5])) +'</b>';
             }
         },
         series: [{

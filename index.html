@@ -16,6 +16,15 @@
 			var tiempo = [];
 			$.getJSON('datos.php', function(data) {
 				/* data will hold the php array as a javascript object */
+				var inicial = data[0];
+				var datainicial = [];
+				var fechaano = datainicial.push(inicial.tiempo.substring(0,4));
+				var fechames = datainicial.push(inicial.tiempo.substring(5,7));
+				var fechadia = datainicial.push(inicial.tiempo.substring(8,10));
+				var fechahora = datainicial.push(inicial.tiempo.substring(11,13));
+				var fechaminuto = datainicial.push(inicial.tiempo.substring(14,16));
+				var fechasegundo = datainicial.push(inicial.tiempo.substring(17,19));
+			
 					$.each(data, function(key, val) {
 					//$('ul').append('<li id="' + key + '">' + val.latitud + ' ' + val.longitud + ' ' + val.elevacion + ' ' + val.distancia + ' ' + val.tiempo +'</li>');
 					recorrido.push(val.distancia);
@@ -26,7 +35,7 @@
 				var SumTime = [];
 				SumTime = GetDiftime(tiempo);
 				//console.log(SumTime);
-				GraficaPuntos(recorrido, SumTime, 0.25);
+				GraficaPuntos(recorrido, SumTime, 0.25, datainicial);
 				/* --------------------------------------- */
 			});
 			
