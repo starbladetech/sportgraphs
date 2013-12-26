@@ -153,7 +153,7 @@ function GraficaPuntos(recorrido, SumTime, salto, data){
 		tooltip: {
             formatter: function() {
 			
-                return 'El tiempo para <b>'+ this.x +
+                return 'El tiempo para <b>'+ Math.round(this.x*100)/100 +
                     ' km</b> es <b>'+ FormateoTime(this.y-Date.UTC(data[0],data[1],data[2],data[3],data[4],data[5])) +'</b>';
             }
         },
