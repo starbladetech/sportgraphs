@@ -1,0 +1,37 @@
+﻿<html>
+<head>
+        <script type='text/javascript' src='//code.jquery.com/jquery-1.10.2.min.js'></script>
+		<script type='text/javascript' src='js/highcharts.js'></script>
+		<script type='text/javascript' src='js/codigo.js'></script>
+</head>
+<body>
+		<div style="height:100%" id="container">
+		</div>
+
+        <script type='text/javascript'>
+        $(document).ready(function(){
+			/* call the php that has the php array which is json_encoded */
+			var recorrido = [];
+			var elevacion = [];
+			var tiempo = [];
+			$.getJSON('datos.php', function(data) {
+				/* data will hold the php array as a javascript object */
+					$.each(data, function(key, val) {
+					//$('ul').append('<li id="' + key + '">' + val.latitud + ' ' + val.longitud + ' ' + val.elevacion + ' ' + val.distancia + ' ' + val.tiempo +'</li>');
+					recorrido.push(val.distancia);
+					elevacion.push(val.elevacion);
+					tiempo.push(val.tiempo.substring(11,19));
+				});
+				/* AQUÍ TENEMOS ACCESIBLES TODOS LOS DATOS */
+				var SumTime = [];
+				SumTime = GetDiftime(tiempo);
+				//console.log(SumTime);
+				GraficaPuntos(recorrido, SumTime, 0.25);
+				/* --------------------------------------- */
+			});
+			
+        });
+        </script>
+
+</body>
+</html>
